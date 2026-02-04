@@ -85,7 +85,7 @@ def generate_visualization(
         return {"error": f"Visualization {visualization_name} not found"}
 
     plot_class = metric_plots_registry[visualization_name]
-    plot_spec = make_plot_from_backtest_object(backtest, plot_class, suitable_metrics[metric_id](), geojson)
+    plot_spec = make_plot_from_backtest_object(backtest, plot_class, suitable_metrics[metric_id](), geojson).plot_spec()
     return JSONResponse(plot_spec)
 
 
