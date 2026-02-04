@@ -325,7 +325,7 @@ def generate_modelcard(evaluation_path: Annotated[
 
     # Added based on metadata format:
     pdf.multi_cell(
-        text=meta_data.citation_info,
+        text=f"{meta_data.citation_info}",
         new_x="LMARGIN",
         new_y="NEXT",
         w=0,
