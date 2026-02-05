@@ -96,7 +96,7 @@ def generate_visualization(
     geojson = json.loads(geojson_str) if geojson_str else None
     plot_class = metric_plots_registry[visualization_name]
     metric = available_metrics[metric_id]()
-    plot_spec = make_plot_from_backtest_object(backtest, plot_class, metric, geojson)
+    plot_spec = make_plot_from_backtest_object(backtest, plot_class, metric, geojson).plot_spec()
     return JSONResponse(plot_spec)
 
 
