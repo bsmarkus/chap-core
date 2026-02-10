@@ -37,6 +37,7 @@ from chap_core.models.model_template import ModelTemplate
 from chap_core.predictor import ModelType
 from chap_core.spatio_temporal_data.multi_country_dataset import MultiCountryDataSet
 from chap_core.spatio_temporal_data.temporal_dataclass import DataSet
+from chap_core.cli_endpoints.generate_modelcard import generate_modelcard2
 
 logger = logging.getLogger(__name__)
 
@@ -301,6 +302,13 @@ def eval_cmd(
             'Format: {"model_name": "csv_column"}. Example: {"rainfall": "precipitation_mm"}'
         ),
     ] = None,
+    generate_modelcard: Annotated[
+        bool,
+        Parameter(
+            help="Generates a modelcard markdown file from the evaluation. "
+            'Format: bool'
+        ),
+    ] = False,
 ):
     """Evaluate a model using backtesting and export results to NetCDF format.
 
@@ -408,6 +416,9 @@ def eval_cmd(
             model_version=template.model_template_config.version or "unknown",
         )
 
+        if generate_modelcard:
+            generate_modelcard2(evaluation, template._model_template_config, output_file)
+
         logger.info(f"Evaluation complete. Results saved to {output_file}")
 
 
@@ -463,6 +474,13 @@ def evaluate2(
             'Format: {"model_name": "csv_column"}. Example: {"rainfall": "precipitation_mm"}'
         ),
     ] = None,
+    generate_modelcard: Annotated[
+        bool,
+        Parameter(
+            help="Generates a modelcard markdown file from the evaluation. "
+            'Format: bool'
+        ),
+    ] = False,
 ):
     """Deprecated: Use `eval` instead. Will be removed in v2.0."""
     warnings.warn(
@@ -479,6 +497,7 @@ def evaluate2(
         model_configuration_yaml=model_configuration_yaml,
         historical_context_years=historical_context_years,
         data_source_mapping=data_source_mapping,
+        generate_modelcard=generate_modelcard,
     )
 
 
