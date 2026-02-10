@@ -20,9 +20,9 @@ app = App()
 # Register commands from each module
 evaluate.register_commands(app)
 forecast.register_commands(app)
-generate_modelcard.register_commands(app)
 init.register_commands(app)
 preference_learn.register_commands(app)
+generate_modelcard.register_commands(app)
 utils.register_commands(app)
 validate.register_commands(app)
 
