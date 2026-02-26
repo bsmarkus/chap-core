@@ -241,7 +241,7 @@ class MetricMapV2(MetricPlotV2):
 
 
 def make_plot_from_backtest_object(
-    backtest: BackTest, plotting_class: MetricPlotV2, metric: MetricBase, geojson: Optional[dict] = None
+    backtest: BackTest, plotting_class: MetricPlotV2, metric: MetricMapV2, geojson: Optional[dict] = None
 ) -> MetricPlotV2:
     # Convert to flat representation using Evaluation abstraction
     evaluation = Evaluation.from_backtest(backtest)
